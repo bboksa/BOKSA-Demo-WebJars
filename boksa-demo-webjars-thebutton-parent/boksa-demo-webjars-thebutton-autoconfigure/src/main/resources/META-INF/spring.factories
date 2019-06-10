@@ -1,0 +1,3 @@
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+de.boksa.demo.webjars.thebutton.service.autoconfigure.TheButtonServiceAutoConfiguration,\
+de.boksa.demo.webjars.thebutton.service.autoconfigure.EchoServiceAutoConfiguration

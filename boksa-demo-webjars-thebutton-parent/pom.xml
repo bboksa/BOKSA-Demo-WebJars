@@ -1,0 +1,209 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<parent>
+		<groupId>de.boksa.demo.webjars</groupId>
+		<artifactId>boksa-demo-webjars-thebutton-bom</artifactId>
+		<version>0.0.1-SNAPSHOT</version>
+		<relativePath>../boksa-demo-webjars-thebutton-bom</relativePath>
+	</parent>
+
+	<artifactId>boksa-demo-webjars-thebutton-parent</artifactId>
+	<packaging>pom</packaging>
+
+	<properties>
+		<topSiteURL>file://Users/bboksa/Desktop/foo/</topSiteURL>
+		<boksa-demo-webjars-thebutton.site.url>${topSiteURL}</boksa-demo-webjars-thebutton.site.url>
+
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<maven.compiler.source>1.8</maven.compiler.source>
+		<maven.compiler.target>${maven.compiler.source}</maven.compiler.target>
+	</properties>
+
+	<url>${boksa-demo-webjars-thebutton.site.url}</url>
+	<distributionManagement>
+		<site>
+			<id>site-docs</id>
+			<url>${boksa-demo-webjars-thebutton.site.url}</url>
+		</site>
+	</distributionManagement>
+
+	<dependencyManagement>
+		<dependencies>
+			<dependency>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-dependencies</artifactId>
+				<version>2.1.4.RELEASE</version>
+				<scope>import</scope>
+				<type>pom</type>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
+
+	<dependencies>
+		<dependency>
+			<groupId>org.projectlombok</groupId>
+			<artifactId>lombok</artifactId>
+			<scope>provided</scope>
+		</dependency>
+	</dependencies>
+
+	<build>
+		<pluginManagement>
+			<plugins>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-site-plugin</artifactId>
+					<version>3.7.1</version>
+				</plugin>
+
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-project-info-reports-plugin</artifactId>
+					<version>3.0.0</version>
+				</plugin>
+
+				<plugin>
+					<groupId>com.github.ferstl</groupId>
+					<artifactId>depgraph-maven-plugin</artifactId>
+					<version>3.3.0</version>
+					<configuration>
+						<createImage>true</createImage>
+						<customStyleConfiguration>src/depgraph/style.json</customStyleConfiguration>
+						<dotExecutable>/usr/local/bin/dot</dotExecutable>
+
+						<outputDirectory>${project.build.directory}/site/images</outputDirectory>
+						<outputFileName>${project.artifactId}-dependency-graph</outputFileName>
+
+					</configuration>
+					<executions>
+						<execution>
+							<id>depgraph-aggregate</id>
+							<goals>
+								<goal>aggregate</goal>
+							</goals>
+							<configuration>
+								<!-- <includes> <include>de.boksa.*</include> </includes> -->
+
+								<!-- <showClassifiers>true</showClassifiers> <showConflicts>true</showConflicts> 
+									<showDuplicates>true</showDuplicates> -->
+
+								<excludeOptionalDependencies>true</excludeOptionalDependencies>
+								<mergeScopes>true</mergeScopes>
+								<scope>runtime</scope>
+
+								<showGroupIds>true</showGroupIds>
+								<showOptional>true</showOptional>
+								<showTypes>true</showTypes>
+								<showVersions>true</showVersions>
+							</configuration>
+						</execution>
+						<execution>
+							<id>depgraph-graph</id>
+							<goals>
+								<goal>graph</goal>
+							</goals>
+							<configuration>
+								<!-- <includes> <include>de.boksa.*</include> </includes> -->
+								<!-- <showClassifiers>true</showClassifiers> <showConflicts>true</showConflicts> 
+									<showDuplicates>true</showDuplicates> -->
+
+								<excludeOptionalDependencies>false</excludeOptionalDependencies>
+								<mergeScopes>true</mergeScopes>
+								<!-- <scope>runtime</scope> -->
+
+								<showGroupIds>true</showGroupIds>
+								<showOptional>true</showOptional>
+								<showTypes>true</showTypes>
+								<showVersions>true</showVersions>
+							</configuration>
+						</execution>
+					</executions>
+				</plugin>
+			</plugins>
+		</pluginManagement>
+		<plugins>
+			<plugin>
+				<artifactId>maven-site-plugin</artifactId>
+				<configuration>
+					<siteDirectory>${session.executionRootDirectory}/src/site</siteDirectory>
+				</configuration>
+				<executions>
+					<execution>
+						<id>attach-descriptor</id>
+						<goals>
+							<goal>attach-descriptor</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
+	</build>
+
+	<modules>
+		<module>boksa-demo-webjars-thebutton-service</module>
+		<module>boksa-demo-webjars-echo-service</module>
+		<module>boksa-demo-webjars-thebutton-webjar</module>
+		<module>boksa-demo-webjars-thebutton-autoconfigure</module>
+		<module>boksa-demo-webjars-thebutton-starter</module>
+		<module>boksa-demo-webjars-thebutton-service-app</module>
+	</modules>
+
+	<profiles>
+		<profile>
+			<id>depgraph-aggregate</id>
+			<activation>
+				<activeByDefault>true</activeByDefault>
+			</activation>
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>com.github.ferstl</groupId>
+						<artifactId>depgraph-maven-plugin</artifactId>
+						<executions>
+							<execution>
+								<id>depgraph-aggregate</id>
+								<phase>site</phase>
+							</execution>
+						</executions>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+		<profile>
+			<id>depgraph-graph</id>
+			<activation>
+				<file>
+					<exists>../pom.xml</exists>
+				</file>
+			</activation>
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>com.github.ferstl</groupId>
+						<artifactId>depgraph-maven-plugin</artifactId>
+						<executions>
+							<execution>
+								<id>depgraph-graph</id>
+								<phase>site</phase>
+							</execution>
+						</executions>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+	</profiles>
+
+	<reporting>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-javadoc-plugin</artifactId>
+				<version>3.1.0</version>
+			</plugin>
+		</plugins>
+	</reporting>
+
+</project>

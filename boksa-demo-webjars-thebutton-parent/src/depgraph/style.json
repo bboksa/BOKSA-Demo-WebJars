@@ -1,0 +1,85 @@
+{
+  "default-node": {
+    "type": "box",
+    "style": "rounded,filled",
+    "fill-color": "#E6FFBF",
+    "default-font": {
+      "size": 14,
+      "name": "Helvetica"
+    },
+    "optional-font": {
+      "size": 10
+    },
+    "group-id-font": {
+      "size": 10
+    },
+    "artifact-id-font": {
+      "name": "Helvetica-bold"      
+    },    
+    "version-font": {
+      "size": 10
+    },
+    "scope-font": {
+      "size": 10
+    },
+    "type-font": {
+      "size": 10
+    },
+    "classifier-font": {
+      "size": 10
+    }
+  },
+  "default-edge": {
+    "font": {
+      "size": 10,
+      "name": "Helvetica"
+    }
+  },
+  "node-styles": {
+  	"de.boksa*,,,,,,true": {
+  	  "type": "box",
+  	  "style": "rounded,dotted,filled",
+  	  "fill-color": "#F8FFED",
+      "default-font": {
+        "color": "#B1B1B1"
+      },
+      "artifact-id-font": {
+        "name": "Helvetica-bold"      
+      }     	  
+  	}, 
+  	"de.boksa*": {
+  	  "type": "box",
+  	  "style": "rounded,filled",
+  	  "fill-color": "#AFF75C",
+      "artifact-id-font": {
+        "name": "Helvetica-bold"      
+      }      	  
+  	},
+  	",,provided": {
+  	  "type": "box",
+  	  "style": "rounded,dotted,filled",
+  	  "fill-color": "#F7F7F7",
+      "default-font": {
+        "color": "#B1B1B1"
+      },
+      "artifact-id-font": {
+        "name": "Helvetica-bold"      
+      }     	  
+  	}	
+  },
+  "edge-resolution-styles": {
+    "omitted-for-duplicate": {
+      "style": "dotted"
+    },
+    "parent": {
+      "style": "dashed"
+    },
+    "omitted-for-conflict": {
+      "style": "dashed",
+      "color": "red",
+      "font": {
+        "color": "red"
+      }
+    }
+  }
+}

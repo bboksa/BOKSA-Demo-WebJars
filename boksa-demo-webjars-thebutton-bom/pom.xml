@@ -1,0 +1,40 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>de.boksa.demo.webjars</groupId>
+	<artifactId>boksa-demo-webjars-thebutton-bom</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<packaging>pom</packaging>
+
+	<dependencyManagement>
+		<dependencies>
+			<dependency>
+				<groupId>de.boksa.demo.webjars</groupId>
+				<artifactId>boksa-demo-webjars-thebutton-service</artifactId>
+				<version>0.0.1-SNAPSHOT</version>
+			</dependency>
+			<dependency>
+				<groupId>de.boksa.demo.webjars</groupId>
+				<artifactId>boksa-demo-webjars-echo-service</artifactId>
+				<version>0.0.1-SNAPSHOT</version>
+			</dependency>
+			<dependency>
+				<groupId>de.boksa.demo.webjars</groupId>
+				<artifactId>boksa-demo-webjars-thebutton-webjar</artifactId>
+				<version>0.0.1-SNAPSHOT</version>
+			</dependency>
+			<dependency>
+				<groupId>de.boksa.demo.webjars</groupId>
+				<artifactId>boksa-demo-webjars-thebutton-autoconfigure</artifactId>
+				<version>0.0.1-SNAPSHOT</version>
+			</dependency>
+			<dependency>
+				<groupId>de.boksa.demo.webjars</groupId>
+				<artifactId>boksa-demo-webjars-thebutton-starter</artifactId>
+				<version>0.0.1-SNAPSHOT</version>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
+
+</project>

@@ -1,0 +1,1 @@
+<a href="images/${project.artifactId}-dependency-graph.png"><img src="images/${project.artifactId}-dependency-graph.png" width="100%" /></a>
